@@ -1,0 +1,13 @@
+Template.sectionData.helpers({ 
+liberalArtsIs: function(LIBART_ATTR) {return this.LIBART_ATTR === LIBART_ATTR;},
+openToMajorsIs: function(ATTR_NM_CODE) {return this.ATTR_NM_CODE === ATTR_NM_CODE;},
+startTime: function() {if (this.BEGIN_TIME) {var begin = this.BEGIN_TIME;var hours24 = parseInt(begin.substring(0,2),10);var hours = ((hours24 + 11) % 12) + 1;var amPm = hours24 > 11 ? ' p.m.' : ' a.m.';var minutes = begin.substring(2);return hours + ':' + minutes + amPm + ' - ';}},
+endTime: function() {if (this.END_TIME) {var end = this.END_TIME;var hours24 = parseInt(end.substring(0,2),10);var hours = ((hours24 + 11) % 12) + 1;var amPm = hours24 > 11 ? ' p.m.' : ' a.m.';var minutes = end.substring(2);return hours + ':' + minutes + amPm;}},
+openClosed: function() {var openClosedVal = this.SEATS_AVAIL;if (openClosedVal > 0 && openClosedVal < 5) {return new Spacebars.SafeString('<span class="open-closed-wrap"><span style="color: orange;"><i class="fa fa-info-circle info-open-orange"></i> Open</span><div class="open-orange-notice">"Open" indicates that there are open seats for this course. The orange color means there are only a few seats remaining.</div></span>');}if (openClosedVal >= 5) {return new Spacebars.SafeString('<span class="open-closed-wrap"><span style="color: green;"><i class="fa fa-info-circle info-open-green"></i> Open</span><div class="open-green-notice">"Open" indicates that there are open seats for this course. The green color means there are more than a few seats remaining.</div></span>');} if (openClosedVal <= 0) {return new Spacebars.SafeString('<span class="open-closed-wrap"><span style="color: red;"><i class="fa fa-info-circle info-closed"></i> Closed</span><div class="closed-red-notice">"Closed" indicates that there are no more open seats for this course. You may still be eligible for a wait list if the course offers it.</div></span>');}}
+});
+Template.courseData.helpers({
+collegeDescCheck: function(COLLEGE_DESC) {return this.COLLEGE_DESC === COLLEGE_DESC;},
+divisionDescCheck: function(vix_school_short) {return this.vix_school_short === vix_school_short;},
+termCheck: function(termVal) { var termSortSession = Session.get('termSort'); if (typeof(termSortSession) === 'object') {return true;} else if (termSortSession === this.SEC_TERM_DESC) {return true;} else {return false;}}
+});
+Template.courseData.onRendered( function (){ Tracker.autorun(function () {$('.accordion-toggle').unbind(); $('#accordion-course').find('.accordion-toggle').click(function(){ $(this).next().slideToggle('fast'); $(".accordion-content").not($(this).next()).slideUp('fast');});}); });

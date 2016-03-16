@@ -1,0 +1,117 @@
+<template name="courseList">
+{{setActive}}
+<div class="row" id="accordion-course">
+	<div class="large-12 columns">
+	{{#if titleQueryHelper}}
+		<h2>{{titleQueryHelper}}</h2>
+	{{/if}}
+		<div class="row cc-thead">
+			<div class="custom-1 columns">
+				<a class="btn-link ccSortSubj" href="#" role="button">Course ID <i class="fa {{ccSortSubjStyle}}"></i></a>
+			</div>
+			<div class="custom-3 columns">
+				<a class="btn-link ccSortTitle " href="#" role="button">Course Title <i class="fa {{ccSortTitleStyle}}"></i></a>
+			</div>
+			<div class="small-1 columns credits">
+				<a class="btn-link ccSortCredit" href="#" role="button">Credits <i class="fa  {{ccSortCredStyle}}"></i></a>
+			</div>
+			<div class="small-2 columns">
+				<select class="form-control college-select">
+					<option selected disabled>School/Division</option>
+					<option>All Schools</option>
+					<!-- Remaining Data Deleted Here -->
+				</select>
+			</div>
+			<div class="custom-2 columns">
+				<a class="btn-link ccSortDept" href="#" role="button">Department <i class="fa {{ccSortDeptStyle}}"></i></a>
+			</div>
+			<div class="custom-1 columns">
+				<select class="form-control term-select">
+					<option selected disabled>Term</option>
+					<option>All Terms</option>
+					<option>Fall {{fallSemYear}}</option>
+					<option>Spring {{springSemYear}}</option>
+					<option>Summer {{summerSemYear}}</option>
+				</select>
+			</div>
+		</div>
+		
+		{{#ifEsIsSearching index="courses" id="search" logic="OR" }}
+				<div class="row">
+				<div class="large-12 columns">		
+					{{> spinner}}
+					</div>
+				</div>
+		{{/ifEsIsSearching}}
+
+		{{#ifEsInputIsEmpty index="courses" id="search"}}
+			<div class="row" id="courseListJoyride">
+				<div class="large-12 columns">
+					{{#each courses}}
+						{{> courseData}}
+					{{else}}
+						<h2 style="font-size: 2.2rem; text-transform: inherit;">Sorry, no results were returned</h2> 
+						<h3>No courses match your current search criteria</h3>
+						<div class="red-bg-alert">
+							<p>Try removing some values to make your search query less narrow.</p>
+						</div>
+					{{/each}}
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="large-12 columns">
+					<ul class="pagination">
+						<li><a style="background-color: #eeeeee; color: #000000;">Display: </a></li>
+						<li id="twentyButton" class="{{isTwentyActive}}"><a href="#">20</a></li> 
+						<li id="fiftyButton" class="{{isFiftyActive}}"><a href="#">50</a></li>
+						<li id="hundredButton" class="{{isHundredActive}}"><a href="#">100</a></li>
+					</ul>				
+					<ul class="pager">
+					{{#if prevText}}
+						<li class="previous button secondary"><a href="#"><span aria-hidden="true">&larr;</span> {{prevText}}</a></li>
+					{{/if}}	
+						<li class="next button secondary"><a href="#">{{nextText}} <span aria-hidden="true">&rarr;</span></a></li>
+					</ul>
+				</div>
+			</div>
+
+		{{else}} 
+			{{#ifEsHasNoResults index="courses" id="search"}}
+	    	<div class="row">
+				<div class="large-12 columns">
+					<h2 style="font-size: 2.2rem; text-transform: inherit;">Sorry, no results were returned</h2> 
+					<h3>Please try a different search term</h3>
+					<div class="blue-bg-alert">
+						<h4>A new, more dynamic search is on its way!</h4>
+						<p>In the upcoming days we will be introducing a more intelligent search that expands the find capabilities of the search bar. For now, please be patient with our basic course catalog search.</p>
+					</div>
+					<div class="red-bg-alert">
+						<h4>Here is how our search currently works:</h4>
+						<p>You may search by:</p>
+						<ul>
+							<li><strong>Subject code</strong> of a course (e.g., LCST or GPSY)</li>
+							<li><strong>Course Title</strong></li>
+							<li><strong>Department</strong></li>
+							<li><strong>Primary Instructor</strong> (Please note that to search for a primary instructor, we ask that you use <strong>either the first name OR the last name</strong>)</li>
+							<li><strong>Course Topics</strong> (tags that relate to the subject matter of the course. e.g., "Painting" or "Public Policy")</li>
+						</ul>
+						<p>If you are having difficulty finding the information you want, simplify and refine your search.</p>
+					</div>
+				</div>
+			</div>
+			{{else}}
+				{{#esEach index="courses" id="search"}}
+					{{> courseData}}
+				{{/esEach}}
+			{{/ifEsHasNoResults}}
+		{{/ifEsInputIsEmpty}}
+		<div class="row">
+			<div class="large-12 columns">
+		{{> esLoadMoreButton index="courses" id="search" howMany=50 class="btn btn-danger btn-lg load-more-button"}}
+			</div>
+		</div>
+	</div>
+</div>
+
+</template>

@@ -1,0 +1,154 @@
+<template name="searchBox">
+  <input type="text" id="search-box" placeholder="Basic Course Catalog Search" />
+</template>
+<template name="advancedSearch">
+<div class="row"><div class="large-12 columns">
+	<div class="row collapse">
+		<div class="small-11 columns">
+			{{> esInput index="courses" placeholder="Search by Course, Department, Instructor, or Subject" class="form-control cc-search" id="search" timeout="200"}}
+		</div>
+		<div class="small-1 columns cc-search-icon"><i class="fa fa-search fa-2x"></i></div>
+	</div>
+</div></div>
+<div class="row">
+	<div class="large-12 columns">
+		<div class="total-results">{{ searchCount }}</div>
+
+		<div id="accordion-adv">
+			<div class="button adv-sort-btn accordion-toggle-adv" id="advancedSearchJoyride">More Searching Options</div>
+			<div class="accordion-content-adv advanced-lists-container">
+				<div class="row">
+					<div class="large-2 columns">						
+							<p style="margin-bottom:10px; font-size: 1.1rem;"><strong>Campus Location</strong></p>
+							<select class="campus-select">
+								<option>All Campuses</option>
+								<option>New York City</option>
+								<option>Online</option>
+								<option>Paris</option>
+							</select>
+					</div>
+					<div class="large-2 columns">
+						<p style="margin-bottom:10px; font-size: 1.1rem;"><strong>Course Format</strong></p>
+						<select class="format-select">
+							<option selected="selected" value="All Course Formats">All Course Formats</option>
+							<option value="Discussion">Discussion</option>
+							<option value="Group Lessons">Group Lessons</option>
+							<option value="Laboratory">Laboratory</option>
+							<option value="Lecture">Lecture</option>
+							<option value="Mobility/Exchange">Mobility/Exchange</option>
+							<option value="Practicum">Practicum</option>
+							<option value="Private Lessons">Private Lessons</option>
+							<option value="Seminar">Seminar</option>
+							<option value="Studio">Studio</option>
+							<option value="Tutorial">Tutorial</option>
+							<option value="Workshop">Workshop</option>
+						</select>
+					</div>
+					<div class="large-2 columns">
+						<p style="margin-bottom:10px; font-size: 1.1rem;"><strong>Subject Code</strong></p>
+						<select class="subject-select">
+							<option selected="selected" value="All Subject Codes">All Subject Codes</option>
+							<option value="APAM">APAM Paris Art, Media &amp; Technology</option>
+							<!-- Remaining Data Deleted Here -->
+						</select>
+					</div>
+					<div class="large-3 columns">
+						<p style="margin-bottom:10px; font-size: 1.1rem;"><strong>Department</strong></p>
+						<select class="department-select">
+							<option selected="selected" value="All Departments">All Departments</option>
+							<option disabled>Drama</option>							
+								<option value="TACT" data-id="Acting">&nbsp;&nbsp;Acting</option>
+								<!-- Remaining Data Deleted Here -->
+						</select>
+					</div>
+					<div class="large-3 columns">
+						<p style="margin-bottom:10px; font-size: 1.1rem;"><strong>Topic</strong></p>
+						<select class="topic-select">
+							<option selected="selected" value="All Topics">All Topics</option>
+							<option value="Accessories Design">Accessories Design</option>
+							<!-- Remaining Data Deleted Here -->
+						</select>
+					</div>
+				</div>
+				<div class="row">
+					<div class="large-2 columns">
+						<ul class="fa-ul advanced-lists">
+							<li style="margin-bottom:10px; font-size: 1.1rem;"><strong><i class="fa-li fa fa-calendar"></i>Day:</strong></li>
+							<li><a href="#" class="ccExMonday"><i class="fa-li fa {{isMondayActive}}"></i>Monday</a></li>
+							<li><a href="#" class="ccExTuesday"><i class="fa-li fa {{isTuesdayActive}}"></i>Tuesday</a></li>
+							<li><a href="#" class="ccExWednesday"><i class="fa-li fa {{isWednesdayActive}}"></i>Wednesday</a></li>
+							<li><a href="#" class="ccExThursday"><i class="fa-li fa {{isThursdayActive}}"></i>Thursday</a></li>
+							<li><a href="#" class="ccExFriday"><i class="fa-li fa {{isFridayActive}}"></i>Friday</a></li>
+							<li><a href="#" class="ccExSaturday"><i class="fa-li fa {{isSaturdayActive}}"></i>Saturday</a></li>
+							<li><a href="#" class="ccExSunday"><i class="fa-li fa {{isSundayActive}}"></i>Sunday</a></li>
+						</ul>
+					</div>
+					<div class="large-3 columns">
+						<p style="margin-bottom:10px; font-size: 1.1rem;"><strong><i class="fa fa-clock-o"></i> Time:</strong></p>
+						<ul class="fa-ul advanced-lists">
+							<li><a href="#" class="beforeNine"><i class="fa-li fa {{beforeNineActive}}"></i>Before 9:00 a.m.</a></li>
+							<li><a href="#" class="nineToTwelve"><i class="fa-li fa {{nineToTwelveActive}}"></i>9:00 a.m. - 12:00 p.m.</a></li>
+							<li><a href="#" class="twelveToThree"><i class="fa-li fa {{twelveToThreeActive}}"></i>12:00 p.m. - 3:00 p.m.</a></li>
+							<li><a href="#" class="threeToSix"><i class="fa-li fa {{threeToSixActive}}"></i>3:00 p.m. - 6:00 p.m.</a></li>
+							<li><a href="#" class="afterSix"><i class="fa-li fa {{afterSixActive}}"></i>After 6:00 p.m.</a></li>
+							<li class="{{resetTimeOfDay}}"><a href="#" class="ccAllTimeOfDay"><i class="fa-li fa fa-refresh"></i>Reset</a></li>
+						</ul>
+					</div>
+					<div class="large-4 columns">
+						<p style="margin-bottom:10px; font-size: 1.1rem;"><strong>Graduate or Undergraduate Courses:</strong></p>
+						<ul class="fa-ul advanced-lists">
+							<li><a href="#" class="ccExGrad"><i class="fa-li fa {{isGradActive}}"></i>Graduate Courses</a></li>
+							<li><a href="#" class="ccExUGrad"><i class="fa-li fa {{isUGradActive}}"></i>Undergraduate Courses</a></li>
+						</ul>
+						<p style="margin-bottom:10px; font-size: 1.1rem;"><strong>Liberal Arts Courses:</strong></p>
+						<ul class="fa-ul advanced-lists">
+							<li><a href="#" class="ccExSLibArts"><i class="fa-li fa {{isLibArtsActive}}"></i>Liberal Arts Courses</a></li>
+							<li><a href="#" class="ccExNonLibArts"><i class="fa-li fa {{isNonLibArtsActive}}"></i>Non-Liberal Arts Courses</a></li>
+							<li class="{{resetLibArts}}"><a href="#" class="reset-lib-arts"><i class="fa-li fa fa-refresh"></i>Reset</a></li>
+						</ul>
+					</div>
+					<div class="large-3 columns">
+						<p style="margin-bottom:10px; font-size: 1.1rem;"><strong>Courses Open to:</strong></p>
+						<ul class="fa-ul advanced-lists">
+							<li><a href="#" class="ccExDegStud"><i class="fa-li fa {{isDegStudActive}}"></i>Degree Students</a></li>
+							<li><a href="#" class="ccExDegStudRest"><i class="fa-li fa {{isDegStudResActive}}"></i>Deg. Students with Restrictions</a></li>
+							<li><a href="#" class="ccExMajorsOnly"><i class="fa-li fa {{isMajorsActive}}"></i>Majors Only</a></li>
+							<li class="{{resetDegStud}}"><a href="#" class="ccAllDegStud"><i class="fa-li fa fa-refresh"></i>Reset</a></li>
+						</ul>
+						<p style="margin-bottom:10px; font-size: 1.1rem;"><strong>Course Status:</strong></p>
+						<ul class="fa-ul advanced-lists">
+							<li><a href="#" class="course-status"><i class="fa-li fa {{openStatusActive}}"></i>Open courses only</a></li>							
+							<li class="{{resetDegStud}}"><a href="#" class="course-status-reset"><i class="fa-li fa fa-refresh"></i>Show all courses</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<div class="large-12 columns">
+	<ul class="breadcrumbs">
+	{{#if crumbSchool}}<li class="gen-breadcrumb"><a class="crumb-school-reset" href="#"><i class="fa fa-times eliminated-text"></i> {{crumbSchool}}</a></li>{{/if}}
+	{{#if crumbDivision}}<li class="gen-breadcrumb"><a class="crumb-school-reset" href="#"><i class="fa fa-times eliminated-text"></i> {{crumbDivision}}</a></li>{{/if}}
+	{{#if crumbTerm}}<li class="gen-breadcrumb"><a class="crumb-term-reset" href="#"><i class="fa fa-times eliminated-text"></i> {{crumbTerm}}</a></li>{{/if}}
+	{{#if isGradActiveCrumb}}<li class="gen-breadcrumb"><a class="crumb-grad-reset" href="#"><i class="fa fa-times eliminated-text"></i> No Graduate Courses</a></li>{{/if}}
+	{{#if isUGradActiveCrumb}}<li class="gen-breadcrumb"><a class="crumb-ugrad-reset" href="#"><i class="fa fa-times eliminated-text"></i> No Undergraduate Courses</a></li>{{/if}}
+	{{#if crumbDeptURL}}<li class="gen-breadcrumb"><a class="crumb-dept-reset" href="#"><i class="fa fa-times eliminated-text"></i> {{crumbDeptURL}}</a></li>{{/if}}
+	{{#if crumbSubjURL}}<li class="gen-breadcrumb"><a class="crumb-subj-reset" href="#"><i class="fa fa-times eliminated-text"></i> {{crumbSubjURL}}</a></li>{{/if}}
+	{{#if crumbTopicURL}}<li class="gen-breadcrumb"><a class="crumb-topic-reset" href="#"><i class="fa fa-times eliminated-text"></i> {{crumbTopicURL}}</a></li>{{/if}}
+	{{#if crumbFormatURL}}<li class="gen-breadcrumb"><a class="crumb-format-reset" href="#"><i class="fa fa-times eliminated-text"></i> {{crumbFormatURL}}</a></li>{{/if}} 
+	{{#if crumbLocation}}<li class="gen-breadcrumb"><a class="crumb-location-reset" href="#"><i class="fa fa-times eliminated-text"></i> {{crumbLocation}}</a></li>{{/if}}
+	{{#if crumbLibArts}}<li class="gen-breadcrumb"><a class="reset-lib-arts" href="#"><i class="fa fa-times eliminated-text"></i> {{crumbLibArts}}</a></li>{{/if}}
+	{{#if crumbOpenToMajors}}<li class="gen-breadcrumb"><a class="reset-degree" href="#"><i class="fa fa-times eliminated-text"></i> {{crumbOpenToMajors}}</a></li>{{/if}}
+	{{#if isMondayActiveCrumb}}<li class="gen-breadcrumb"><a class="crumb-monday-reset" href="#"><i class="fa fa-times eliminated-text"></i> No Monday</a></li>{{/if}}
+	{{#if isTuesdayActiveCrumb}}<li class="gen-breadcrumb"><a class="crumb-tuesday-reset" href="#"><i class="fa fa-times eliminated-text"></i> No Tuesday</a></li>{{/if}}
+	{{#if isWednesdayActiveCrumb}}<li class="gen-breadcrumb"><a class="crumb-wednesday-reset" href="#"><i class="fa fa-times eliminated-text"></i> No Wednesday</a></li>{{/if}}
+	{{#if isThursdayActiveCrumb}}<li class="gen-breadcrumb"><a class="crumb-thursday-reset" href="#"><i class="fa fa-times eliminated-text"></i> No Thursday</a></li>{{/if}}
+	{{#if isFridayActiveCrumb}}<li class="gen-breadcrumb"><a class="crumb-friday-reset" href="#"><i class="fa fa-times eliminated-text"></i> No Friday</a></li>{{/if}}
+	{{#if isSaturdayActiveCrumb}}<li class="gen-breadcrumb"><a class="crumb-saturday-reset" href="#"><i class="fa fa-times eliminated-text"></i> No Saturday</a></li>{{/if}}
+	{{#if isSundayActiveCrumb}}<li class="gen-breadcrumb"><a class="crumb-sunday-reset" href="#"><i class="fa fa-times eliminated-text"></i> No Sunday</a></li>{{/if}}
+	{{#if crumbTime}}<li class="gen-breadcrumb"><a class="ccAllTimeOfDay" href="#"><i class="fa fa-times eliminated-text"></i> {{crumbTime}}</a></li>{{/if}}
+	{{#if isOpenStatusCrumb}}<li class="gen-breadcrumb"><a class="course-status-reset" href="#"><i class="fa fa-times eliminated-text"></i> Open Courses</a></li>{{/if}}
+	</ul>
+	</div>
+</div>	
+</template>

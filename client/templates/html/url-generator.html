@@ -1,0 +1,207 @@
+<template name="urlGenerator">
+{{noSearchRaw}}
+<div class="url-generator-container">
+	<div class="row">
+		<div class="large-12 columns" >
+			<h1>Course Catalog URL Generator</h1>
+		</div>
+	</div>
+		<div class="row url-container">
+		<div class="large-12 columns">
+			<h4>Your URL:</h4>
+			<p>http://example.edu/{{urlSchool}}?{{urlTerm}}{{urlGrad}}{{urlUgrad}}{{urlDept}}{{urlSubj}}{{urlFormat}}{{urlLocation}}{{urlLibArts}}{{urlOpenToMajors}}{{urlKeyword}}{{urlTopic}}{{urlMonday}}{{urlTuesday}}{{urlWednesday}}{{urlThursday}}{{urlFriday}}{{urlSaturday}}{{urlSunday}}{{urlTitle}}{{urlCourseCode}}</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="large-12 columns">
+			<ul class="breadcrumbs">
+			{{#if crumbSchoolURL}}
+				<li class="gen-breadcrumb"><a class="crumb-school-reset" href="#"><i class="fa fa-times eliminated-text"></i> {{crumbSchoolURL}}</a></li>
+			{{/if}}
+			{{#if crumbTermURL}}
+				<li class="gen-breadcrumb"><a class="reset-term" href="#"><i class="fa fa-times eliminated-text"></i> {{crumbTermURL}}</a></li>
+			{{/if}}
+			{{#if urlGrad}}
+				<li class="gen-breadcrumb"><a class="reset-grad" href="#"><i class="fa fa-times eliminated-text"></i> Graduate Courses</a></li>
+			{{/if}}
+			{{#if urlUgrad}}
+				<li class="gen-breadcrumb"><a class="reset-grad" href="#"><i class="fa fa-times eliminated-text"></i> Undergraduate Courses</a></li>
+			{{/if}}
+			{{#if crumbDeptURL}}
+				<li class="gen-breadcrumb"><a class="crumb-dept-reset" href="#"><i class="fa fa-times eliminated-text"></i> <span style="color: #000;">Department:</span> {{crumbDeptURL}}</a></li>
+			{{/if}}
+			{{#if crumbSubjURL}}
+				<li class="gen-breadcrumb"><a class="crumb-subj-reset" href="#"><i class="fa fa-times eliminated-text"></i> <span style="color: #000;">Subject Code:</span> {{crumbSubjURL}}</a></li>
+			{{/if}}
+			{{#if crumbFormatURL}}
+				<li class="gen-breadcrumb"><a class="crumb-format-reset" href="#"><i class="fa fa-times eliminated-text"></i> <span style="color: #000;">Course Format:</span> {{crumbFormatURL}}</a></li>
+			{{/if}}
+			{{#if crumbLocationURL}}
+				<li class="gen-breadcrumb"><a class="crumb-location-reset" href="#"><i class="fa fa-times eliminated-text"></i> {{crumbLocationURL}}</a></li>
+			{{/if}}
+			{{#if crumbLibArtsURL}}
+				<li class="gen-breadcrumb"><a class="reset-lib-arts" href="#"><i class="fa fa-times eliminated-text"></i> {{crumbLibArtsURL}}</a></li>
+			{{/if}}
+			{{#if crumbOpenToMajorsURL}}
+				<li class="gen-breadcrumb"><a class="reset-degree" href="#"><i class="fa fa-times eliminated-text"></i> {{crumbOpenToMajorsURL}}</a></li>
+			{{/if}}
+			{{#if crumbTopicURL}}
+				<li class="gen-breadcrumb"><a class="crumb-topic-reset" href="#"><i class="fa fa-times eliminated-text"></i> <span style="color: #000;">Topic:</span> {{crumbTopicURL}}</a></li>
+			{{/if}}
+			{{#if urlMonday}}
+				<li class="gen-breadcrumb"><a class="crumb-monday-reset" href="#"><i class="fa fa-times eliminated-text"></i> Monday</a></li>
+			{{/if}}
+			{{#if urlTuesday}}
+				<li class="gen-breadcrumb"><a class="crumb-tuesday-reset" href="#"><i class="fa fa-times eliminated-text"></i> Tuesday</a></li>
+			{{/if}}
+			{{#if urlWednesday}}
+				<li class="gen-breadcrumb"><a class="crumb-wednesday-reset" href="#"><i class="fa fa-times eliminated-text"></i> Wednesday</a></li>
+			{{/if}}
+			{{#if urlThursday}}
+				<li class="gen-breadcrumb"><a class="crumb-thursday-reset" href="#"><i class="fa fa-times eliminated-text"></i> Thursday</a></li>
+			{{/if}}
+			{{#if urlFriday}}
+				<li class="gen-breadcrumb"><a class="crumb-friday-reset" href="#"><i class="fa fa-times eliminated-text"></i> Friday</a></li>
+			{{/if}}
+			{{#if urlSaturday}}
+				<li class="gen-breadcrumb"><a class="crumb-saturday-reset" href="#"><i class="fa fa-times eliminated-text"></i> Saturday</a></li>
+			{{/if}}
+			{{#if urlSunday}}
+				<li class="gen-breadcrumb"><a class="crumb-sunday-reset" href="#"><i class="fa fa-times eliminated-text"></i> Sunday</a></li>
+			{{/if}}
+
+			{{#if crumbCourseCodeURL}}
+				<li class="gen-breadcrumb"><a class="crumb-coursecode-reset" href="#"><i class="fa fa-times eliminated-text"></i> <span style="color: #000;">Course Codes:</span> {{crumbCourseCodeURL}}</a></li>
+			{{/if}}
+			{{#if crumbTitleURL}}
+				<li class="gen-breadcrumb"><a class="crumb-title-reset" href="#"><i class="fa fa-times eliminated-text"></i> <span style="color: #000;">Custom Title:</span>{{crumbTitleURL}}</a></li>
+			{{/if}}
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<div class="reset-everything btn-featured-large large-4 columns"><i class="fa fa-hand-o-down"></i> Reset All Selections</div>
+		<div class="large-8 columns">&nbsp;</div>
+	</div>
+	<div class="row">
+		<div class="large-4 columns">
+			<h4>Term</h4>
+			<ul class="fa-ul advanced-lists">
+				<li><a href="#" class="urlFall"><i class="fa-li fa {{isFallUrl}}"></i>Fall</a></li>
+				<li><a href="#" class="urlSpring"><i class="fa-li fa {{isSpringUrl}}"></i>Spring</a></li>
+				<li><a href="#" class="urlSummer"><i class="fa-li fa {{isSummerUrl}}"></i>Summer</a></li>
+				<li><a href="#" class="reset-term"><i class="fa-li fa fa-refresh"></i>Reset</a></li>
+			</ul>			
+			<h4>Graduate/Undergraduate</h4>
+			<ul class="fa-ul advanced-lists">									
+				<li><a href="#" class="ccExGrad"><i class="fa-li fa {{isGradActive}}"></i> Graduate Courses</a></li>
+				<li><a href="#" class="ccExUGrad"><i class="fa-li fa {{isUGradActive}}"></i> Undergraduate Courses</a></li>
+				<li><a href="#" class="reset-grad"><i class="fa-li fa fa-refresh"></i>Reset</a></li>
+			</ul>
+			<h4>Division/Schools</h4>
+			<select class="school-selectURL">
+				<option value="All Divisions">All Divisions/Schools</option>
+				<option value="DR">Drama</option>
+				<option value="JZ">Jazz</option>
+				<option value="LS">Lang</option>
+				<option value="MC">Mannes</option>
+				<option value="GF">NSSR</option>
+				<option value="PS">Parsons</option>
+				<option value="ADHT">&nbsp;&nbsp;&nbsp;Art and Design History and Theory</option>
+				<option value="AMT">&nbsp;&nbsp;&nbsp;Art, Media and Technology</option>
+				<option value="CON">&nbsp;&nbsp;&nbsp;Constructed Environments</option>
+				<option value="DS">&nbsp;&nbsp;&nbsp;Design Strategies</option>
+				<option value="FA">&nbsp;&nbsp;&nbsp;Fashion</option>
+				<option value="NS">Public Engagement</option>
+				<option value="AB">&nbsp;&nbsp;&nbsp;Adult Bachelors</option>
+				<option value="CW">&nbsp;&nbsp;&nbsp;Creative Writing</option>
+				<option value="LNGS">&nbsp;&nbsp;&nbsp;Languages</option>
+				<option value="MS">&nbsp;&nbsp;&nbsp;Media Studies</option>
+				<option value="MI">&nbsp;&nbsp;&nbsp;Milano</option>
+				<option value="UL">University Wide Programs</option>
+			</select>
+
+			<h4>Department</h4>
+			<p class="note">To select multiple, hold 'CTRL' (Windows) or 'Command' (Mac) while clicking</p>
+			<select name="Department" size="8" class="department-selectURL"  multiple="multiple">
+				<option selected="selected" value="All Departments">All Departments</option>
+				<option disabled>Drama</option>							
+					<option value="department%5B%5D=TACT&" data-id="Acting">&nbsp;&nbsp;Acting</option>
+					<!-- Remaining Data Deleted Here -->
+			</select>
+		</div>
+		<div class="large-4 columns">
+			<h4>Subject Code</h4>
+			<p class="note">To select multiple, hold 'CTRL' (Windows) or 'Command' (Mac) while clicking</p>
+			<select size="8" class="subj-selectURL" multiple="multiple">
+				<option selected="selected" value="All Subject Codes">All Subject Codes</option>
+				<option value="subj%5B%5D=CAML&">CAML Major Lessons</option>
+				<!-- Remaining Data Deleted Here -->
+			</select>
+			
+			<h4>Course Codes</h4>
+			<p class="note">ex. ABCD1234, EFGH5678, IJKL9101<br />Press enter to generate the URL.</p>
+			<input class="courseCode-typeURL">
+			
+			<h4>Course Format</h4>
+			<select class="format-selectURL">
+				<option selected="selected" value="All Course Formats">All Course Formats</option>
+				<option value="Discussion">Discussion</option>
+				<option value="Group Lessons">Group Lessons</option>
+				<option value="Laboratory">Laboratory</option>
+				<option value="Lecture">Lecture</option>
+				<option value="Mobility/Exchange">Mobility/Exchange</option>
+				<option value="Practicum">Practicum</option>
+				<option value="Private Lessons">Private Lessons</option>
+				<option value="Seminar">Seminar</option>
+				<option value="Studio">Studio</option>
+				<option value="Tutorial">Tutorial</option>
+				<option value="Workshop">Workshop</option>
+			</select>
+			<h4>Location</h4>
+			<form class="form-inline" role="form" style="margin-bottom: 25px;">
+				<select class="campus-selectURL">
+					<option>All Campuses</option>
+					<option>New York City</option>
+					<option>Online</option>
+					<option>Paris</option>
+				</select>						
+			</form>
+			<h4>Liberal Arts/Non-Liberal Arts</h4>
+				<ul class="fa-ul advanced-lists">				
+					<li><a href="#" class="ccExSLibArts"><i class="fa-li fa {{isLibArtsActive}}"></i>Liberal Arts Courses</a></li>
+					<li><a href="#" class="ccExNonLibArts"><i class="fa-li fa {{isNonLibArtsActive}}"></i>Non-Liberal Arts Courses</a></li>
+					<li class="{{resetLibArts}}"><a href="#" class="reset-lib-arts"><i class="fa-li fa fa-refresh"></i>Reset</a></li>									
+				</ul>			
+		</div>
+		<div class="large-4 columns">
+			<h4>Title/Description for URL</h4>
+			<p class="note">Add a title to the URL query that appears on the page.</p>
+			<input class="title-typeURL">	
+			<h4>Topic</h4>
+			<select size="8" class="topic-selectURL"  multiple="multiple">
+				<option selected="selected" value="All Topics">All Topics</option>
+				<option value="Accessories Design">Accessories Design</option>
+				<!-- Remaining Data Deleted Here -->
+			</select>
+			<h4>Day of the Week</h4>
+			<ul class="fa-ul advanced-lists">
+				<li><a href="#" class="ccExMonday"><i class="fa-li fa {{isMondayActive}}"></i>Monday</a></li>
+				<li><a href="#" class="ccExTuesday"><i class="fa-li fa {{isTuesdayActive}}"></i>Tuesday</a></li>
+				<li><a href="#" class="ccExWednesday"><i class="fa-li fa {{isWednesdayActive}}"></i>Wednesday</a></li>
+				<li><a href="#" class="ccExThursday"><i class="fa-li fa {{isThursdayActive}}"></i>Thursday</a></li>
+				<li><a href="#" class="ccExFriday"><i class="fa-li fa {{isFridayActive}}"></i>Friday</a></li>
+				<li><a href="#" class="ccExSaturday"><i class="fa-li fa {{isSaturdayActive}}"></i>Saturday</a></li>
+				<li><a href="#" class="ccExSunday"><i class="fa-li fa {{isSundayActive}}"></i>Sunday</a></li>
+			</ul>
+			<h4>Courses Open To</h4>	
+			<ul class="fa-ul advanced-lists">
+				<li><a href="#" class="ccExDegStud"><i class="fa-li fa {{isDegStudActive}}"></i>Degree Students</a></li>
+				<li><a href="#" class="ccExDegStudRest"><i class="fa-li fa {{isDegStudResActive}}"></i>Deg. Students with Restrictions</a></li>
+				<li><a href="#" class="ccExMajorsOnly"><i class="fa-li fa {{isMajorsActive}}"></i>Majors Only</a></li>
+				<li><a href="#" class="reset-degree"><i class="fa-li fa fa-refresh"></i>Reset</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+</template>

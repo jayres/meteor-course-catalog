@@ -1,0 +1,29 @@
+<template name="subsectionData">
+<span><i class="fa fa-calendar"></i> &nbsp;&nbsp;Day:</span>
+{{#if MONDAY_IND}}
+Mon. 
+{{/if}}	
+{{#if TUESDAY_IND}}
+Tues. 
+{{/if}}		
+{{#if WEDNESDAY_IND}}
+Wed. 
+{{/if}}	
+{{#if THURSDAY_IND}}
+Thurs. 
+{{/if}}		
+{{#if FRIDAY_IND}}
+Fri. 
+{{/if}}		
+{{#if SATURDAY_IND}}
+Sat. 
+{{/if}}		
+{{#if SUNDAY_IND}}
+Sun.
+{{/if}}	
+<br />
+{{#if BEGIN_TIME}}<span><i class="fa fa-clock-o"></i> &nbsp;&nbsp;Time:</span> {{startTime}} {{endTime}}<br />{{/if}}
+{{#if BUILDING_DESC}}<span><i class="fa fa-building"></i> &nbsp;&nbsp;Location:</span> {{BUILDING_DESC}}<br />{{/if}}
+{{#if ROOM}}<span><i class="fa fa-location-arrow"></i> &nbsp;&nbsp;Room:</span> {{ROOM}}<br />{{/if}}
+<span><i class="fa fa-calendar-o"></i> &nbsp;&nbsp;Date Range:</span> {{startDate}} - {{endDate}}
+</template>

@@ -1,0 +1,127 @@
+<template name="courseDetails">
+{{setInactive}}
+	<div class="course-details-wrapper">
+		<div class="row crc-details-row">	
+			<div class="large-9 columns crc-details-collegedesc">
+				<div class="crs-details-coursecode-box"><span>{{SUBJ}}</span><br />{{CRSE}}</div>
+				<h1>{{CRSE_TITLE}}</h1>			
+				<h3>{{COLLEGE_DESC}}: <span>{{DEPT_DESC}}</span></h3>
+				<div style="clear:both;"></div>
+			</div>
+			<div class="large-3 columns">
+				<div class="crs-details-sidebar">
+					{{#if liberalArtsIs 'LIBL'}}	
+						<p><i class="fa fa-check-square-o"></i> Liberal Arts</p>
+					{{else}}
+						<p><i class="fa fa-check-square-o"></i> Non-Liberal Arts</p>
+					{{/if}}
+					<p>
+						{{#if LV2}}		
+							<i class="fa fa-check-square-o"></i> Graduate Course<br />
+						{{/if}}	
+						{{#if LV1}}	
+							<i class="fa fa-check-square-o"></i> Undergraduate Course
+						{{/if}}
+					</p>
+					<p>
+						{{#if openToMajorsIs 'NMN'}}
+							<i class="fa fa-check-square-o"></i> Open to Majors Only<br/>
+						{{/if}}
+						{{#if openToMajorsIs 'NMO'}}
+							<i class="fa fa-check-square-o"></i> Open to Non Majors<br/>
+						{{/if}}
+						{{#if openToMajorsIs 'NMR'}}
+							<i class="fa fa-check-square-o"></i> Non Majors with Restrictions<br/>
+						{{/if}}
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+		{{#each vix_sections}}
+			<div class="large-6 columns crs-details-count">
+				<div class="section-crs-details">
+				<h3 style="font-weight: 600;">
+					{{courseTitle}}
+				</h3>
+				<h3 style="color: #e82e21;">{{SEC_TERM_DESC}}</h3>
+				{{#if INSTRUCTOR_PRIM}}
+					<h4><strong>Taught by:</strong> {{INSTRUCTOR_PRIM}}</h4>
+				{{else}}
+					<h4><span>Taught by:</span><br/>TBA, Faculty</h4>
+				{{/if}}
+				<h4 style="color: #e82e21;">Section: {{SECTION_NUMB}}</h4>
+				<p><strong>CRN:</strong> {{CRN}}</p>
+				<p><strong>Credits:</strong> {{CREDIT_HR}}</p>
+				
+				<p style="line-height: 1.6rem;"><strong>Course Description:</strong><br />{{COURSE_DESCRIPTION}}</p>
+				{{#if vix_prereq}}
+					<p><span style="font-style: italic;">{{vix_prereq}}</span></p>
+				{{/if}}
+				<p><strong>College:</strong> {{COLLEGE_DESC}}<br />
+				<strong>Department:</strong> {{DEPT_DESC}}<br />
+				<strong>Campus:</strong> {{CAMPUS_DESC}}<br />
+				<strong>Course Format:</strong> {{SCHEDULE_TYPE_DESC}}<br />
+				<strong>Total Seats:</strong> {{ENRL_LIMIT}}<br />
+				<strong>Enrollment Status: {{openClosed}}</strong></p>
+
+			{{#each vix_section_meeting_times}}
+				<div class="week-container">
+					{{#if MONDAY_IND}}
+						<div class="day-container-active">M</div>
+					{{else}}
+						<div class="day-container-inactive">M</div>
+					{{/if}}
+					{{#if TUESDAY_IND}}
+						<div class="day-container-active">Tu</div>
+					{{else}}
+						<div class="day-container-inactive">Tu</div>
+					{{/if}}
+					{{#if WEDNESDAY_IND}}
+						<div class="day-container-active">W</div>
+					{{else}}
+						<div class="day-container-inactive">W</div>
+					{{/if}}
+					{{#if THURSDAY_IND}}
+						<div class="day-container-active">Th</div>
+					{{else}}
+						<div class="day-container-inactive">Th</div>
+					{{/if}}
+					{{#if FRIDAY_IND}}
+						<div class="day-container-active">F</div>
+					{{else}}
+						<div class="day-container-inactive">F</div>
+					{{/if}}
+					{{#if SATURDAY_IND}}
+						<div class="day-container-active">Sa</div>
+					{{else}}
+						<div class="day-container-inactive">Sa</div>
+					{{/if}}
+					{{#if SUNDAY_IND}}
+						<div class="day-container-active">Su</div>
+					{{else}}
+						<div class="day-container-inactive">Su</div>
+					{{/if}}
+				</div>
+				<p><strong>Meeting Info:</strong></p>
+				<div class="subsection-data-details">{{> subsectionData}}</div>
+			{{/each}}
+				<!--{{#if COURSE_TOPIC1}}
+				<p><strong>Topic:</strong></p>
+					<pre>{{COURSE_TOPIC1}}</pre>
+				{{/if}}	
+				{{#if COURSE_TOPIC2}}
+					<pre>{{COURSE_TOPIC2}}</pre>
+				{{/if}}	
+				{{#if COURSE_TOPIC3}}
+					<pre>{{COURSE_TOPIC3}}</pre>
+				{{/if}}	-->											
+				</div>
+			</div>
+		{{/each}}
+
+		</div>
+		<div class="row"><div class="large-12 columns">	<div style="margin-bottom: 45px;"><a href="/" class="button load-more-button"><i class="fa fa-arrow-circle-left"></i> Back to the Course Catalog</a></div></div></div>
+	</div>
+
+</template>

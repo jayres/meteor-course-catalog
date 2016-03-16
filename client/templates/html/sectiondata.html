@@ -1,0 +1,81 @@
+<template name="sectionData">
+		<div class="row">
+			<div class="large-6 columns">
+				<strong><span>
+				{{#if SEC_TITLE}}
+					{{SEC_TITLE}}
+				{{else}}
+					{{#if LONG_CRSE_TITLE}}
+						{{LONG_CRSE_TITLE}}
+					{{else}}
+						{{CRSE_TITLE}}
+					{{/if}}
+				{{/if}}
+				</span></strong><br />
+				<div class="crs-desc-text">{{COURSE_DESCRIPTION}}</div>
+				<a href="/courses/{{../CRSE_ID_KEY}}">More Information...</a>
+				{{#if INSTRUCTOR_PRIM}}
+					<p>Faculty: <strong>{{INSTRUCTOR_PRIM}}</strong></p>
+				{{/if}}
+				{{#each vix_section_meeting_times}}
+					<p>{{#if MONDAY_IND}}
+							<i class="fa fa-calendar"></i> Monday 
+						{{/if}}
+						{{#if TUESDAY_IND}}
+							<i class="fa fa-calendar"></i> Tuesday 
+						{{/if}}
+						{{#if WEDNESDAY_IND}}
+							<i class="fa fa-calendar"></i> Wednesday 
+						{{/if}}
+						{{#if THURSDAY_IND}}
+							<i class="fa fa-calendar"></i> Thursday 
+						{{/if}}
+						{{#if FRIDAY_IND}}
+							<i class="fa fa-calendar"></i> Friday 
+						{{/if}}
+						{{#if SATURDAY_IND}}
+							<i class="fa fa-calendar"></i> Saturday 
+						{{/if}}
+						{{#if SUNDAY_IND}}
+							<i class="fa fa-calendar"></i> Sunday 
+						{{/if}}
+					 {{startTime}} {{endTime}}</p>
+				{{/each}}
+			</div>
+			<div class="large-3 columns">
+				<strong><span>{{SEC_TERM_DESC}}</span></strong><br />
+				Section: <strong>{{SECTION_NUMB}}</strong><br />
+				CRN: <strong>{{CRN}}</strong><br />
+				Campus: <strong>{{CAMPUS_DESC}}</strong><br />
+				Total Seats: <strong>{{ENRL_LIMIT}}</strong>
+				<p><strong><span>{{openClosed}}</span></strong></p>
+			</div>
+
+			<div class="large-3 columns">
+
+			{{#if liberalArtsIs 'LIBL'}}	
+				<i class="fa fa-check-square-o"></i> Liberal Arts<br />
+			{{else}}
+				<i class="fa fa-check-square-o"></i> Non-Liberal Arts<br />
+			{{/if}}
+
+			{{#if LV2}}		
+				<i class="fa fa-check-square-o"></i> Graduate Course<br />
+			{{/if}}	
+			{{#if LV1}}	
+				<i class="fa fa-check-square-o"></i> Undergraduate Course<br />
+			{{/if}}
+
+				{{#if openToMajorsIs 'NMN'}}
+					<i class="fa fa-check-square-o"></i> Open to: Majors Only<br/>
+				{{/if}}
+				{{#if openToMajorsIs 'NMO'}}
+					<i class="fa fa-check-square-o"></i> Open to: Non Majors<br/>
+				{{/if}}
+				{{#if openToMajorsIs 'NMR'}}
+					<i class="fa fa-check-square-o"></i> Open to: Non Majors with Restrictions<br/>
+				{{/if}}		
+			<i class="fa fa-check-square-o"></i> {{SCHEDULE_TYPE_DESC}}
+			</div>
+	</div>
+</template>

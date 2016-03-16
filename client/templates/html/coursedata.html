@@ -1,0 +1,25 @@
+<template name="courseData">
+	<div class="row course-wrapper">
+	<div class="large-12 columns">
+		<div class="row accordion-toggle">
+			<div class="custom-1 columns course-code-data">{{SUBJ}} {{CRSE}}</div> 
+			<div class="custom-3 columns course-title-data">{{CRSE_TITLE}}</div>
+			<div class="large-1 columns course-credits-data"><span class="mobile-hidden">Credits: </span>{{CREDIT_HR}}</div>
+			<div class="large-2 columns course-school-data"><span class="mobile-hidden">School: </span>
+			<!-- Remaining Data Deleted Here -->
+			</div>
+			<div class="custom-2 columns course-dept-data"><span class="mobile-hidden">Department: </span>{{DEPT_DESC}}</div>
+			<div class="custom-1 columns course-link-data"><a href="/courses/{{CRSE_ID_KEY}}"><i class="fa fa-external-link"></i> Course Page</a></div>
+		</div>
+
+		<div class="section-container accordion-content">
+			{{#each vix_sections}}
+				{{#if termCheck}}
+					{{> sectionData}}
+				{{/if}}
+			{{/each}}
+
+		</div>
+	</div>
+	</div>
+</template>

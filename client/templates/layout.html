@@ -1,0 +1,43 @@
+<template name="layout">
+<div class="site-wrapper">	
+	<div class="container">
+		<div class="row site-top">
+		<div class="columns large-16">
+                <div id="site_lockup">
+                    <div id="menu_button_wrapper">
+                    	<div class="btn-featured" id="firstStop"><a href="http://goo.gl/forms/3pYNdDvMtj" target="_blank"><i class="fa fa-comment-o"></i>Provide Feedback</a></div>
+                        <div class="btn-featured open-closed-wrap" style="clear:both;"><a href="#"><i class="fa fa-question-circle"></i>About the Catalog</a>
+                            <div class="open-black-notice" style="position:absolute;"><p>The Course Catalog represents the academic offerings.</p>
+                            </div>
+                        </div>
+                	</div>
+                    <h1 class="sitename">
+                        <a href="/">
+                            <span class="font-width-3 kern-decrease-5">C</span>
+                            <span class="font-width-1">o</span>
+                            <span class="font-width-1">u</span>
+                            <span class="font-width-3">r</span>
+                            <span class="font-width-1">s</span>
+                            <span class="font-width-1">e</span>
+                            <span class="font-width-1">&nbsp;</span>
+                            <span class="font-width-1">c</span>
+                            <span class="font-width-1">a</span>
+                            <span class="font-width-1">t</span>
+                            <span class="font-width-1">a</span>
+                            <span class="font-width-1">l</span>
+                            <span class="font-width-1">o</span>
+                            <span class="font-width-1">g</span>
+                        </a>
+                    </h1>
+                </div>
+
+            </div>
+		</div>
+		<div class="{{advancedExist}}">
+			{{> advancedSearch}}
+		</div>
+		{{> yield}}
+	</div>
+</div>
+{{> nsSiteBottom}}
+</template>
